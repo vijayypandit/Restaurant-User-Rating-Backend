@@ -10,7 +10,7 @@ spring:
         - id: USER-SERVICE
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/users/**
+            - Path=/users/**,/staffs/**
 
         - id: RATING-SERVICE
           uri: lb://RATING-SERVICE
