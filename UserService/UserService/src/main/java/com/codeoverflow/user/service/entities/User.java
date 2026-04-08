@@ -1,25 +1,31 @@
 package com.codeoverflow.user.service.entities;
 
-import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+
 @Entity
-@Table(name="micro_users")
+@Table(name = "users")
 public class User {
     @Id
-    @Column(name="ID")
+    @Column(name = "ID")
     private String userId;
-    @Column(name="NAME", length = 30)
+    @Column(name = "NAME", length = 30)
     private String name;
-    @Column(name="EMAIL")
+    @Column(name = "EMAIL")
     private String email;
-    @Column(name="ABOUT")
+    @Column(name = "ABOUT")
     private String about;
     @Transient
     private List<Rating> ratings = new ArrayList<>();
 
-    public User() {}
+    public User() {
+    }
 
     public User(String userId, String name, String email, String about, List<Rating> ratings) {
         this.userId = userId;
@@ -29,25 +35,84 @@ public class User {
         this.ratings = ratings;
     }
 
-    public String getUserId() { return userId; }
-    public void setUserId(String userId) { this.userId = userId; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-    public String getAbout() { return about; }
-    public void setAbout(String about) { this.about = about; }
-    public List<Rating> getRatings() { return ratings; }
-    public void setRatings(List<Rating> ratings) { this.ratings = ratings; }
+    public String getUserId() {
+        return userId;
+    }
 
-    public static UserBuilder builder() { return new UserBuilder(); }
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public static UserBuilder builder() {
+        return new UserBuilder();
+    }
+
     public static class UserBuilder {
-        private String userId; private String name; private String email; private String about; private List<Rating> ratings = new ArrayList<>();
-        public UserBuilder userId(String userId) { this.userId = userId; return this; }
-        public UserBuilder name(String name) { this.name = name; return this; }
-        public UserBuilder email(String email) { this.email = email; return this; }
-        public UserBuilder about(String about) { this.about = about; return this; }
-        public UserBuilder ratings(List<Rating> ratings) { this.ratings = ratings; return this; }
-        public User build() { return new User(userId, name, email, about, ratings); }
+        private String userId;
+        private String name;
+        private String email;
+        private String about;
+        private List<Rating> ratings = new ArrayList<>();
+
+        public UserBuilder userId(String userId) {
+            this.userId = userId;
+            return this;
+        }
+
+        public UserBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public UserBuilder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public UserBuilder about(String about) {
+            this.about = about;
+            return this;
+        }
+
+        public UserBuilder ratings(List<Rating> ratings) {
+            this.ratings = ratings;
+            return this;
+        }
+
+        public User build() {
+            return new User(userId, name, email, about, ratings);
+        }
     }
 }
