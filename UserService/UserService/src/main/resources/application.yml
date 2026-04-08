@@ -47,7 +47,7 @@ management:
       show-details: always
 
 
-#resilience4j: circuitbreaker
+#resilience4j: circuitbreaker Configurations Added #
 resilience4j:
   circuitbreaker:
     instances:
@@ -62,9 +62,18 @@ resilience4j:
         slidingWindowType: COUNT_BASED
         waitDurationInOpenState: 5000
 
+#retry Configurations Added #
   retry:
     instances:
       ratingHotelService:
         maxAttempts: 3
         waitDuration: 5s
+
+#RateLimiter Configuration 
+  ratelimiter:
+    instances:
+      userRateLimiter:
+        limit-refresh-period: 4s
+        limit-for-period: 2
+        timeout-duration: 0s
 
